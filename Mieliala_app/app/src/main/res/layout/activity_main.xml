@@ -56,7 +56,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/textHeader"
         android:text="How do you feel?"
-        android:textSize="30dp"
+        android:textSize="30sp"
         />
 
     <TextView
@@ -69,7 +69,7 @@
         app:layout_constraintTop_toBottomOf="@id/seekFeeling"
         android:id="@+id/textHeader2"
         android:text="Describe your feeling"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:paddingTop="10dp"
         />
 
