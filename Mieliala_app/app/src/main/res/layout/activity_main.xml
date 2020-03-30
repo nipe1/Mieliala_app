@@ -87,12 +87,23 @@
         />
     <Button
         android:id="@+id/buttonNext"
+        android:onClick="buttonNext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Next"
         app:layout_constraintTop_toBottomOf="@id/editFeel"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginRight="30dp"
+        />
+    <Button
+        android:id="@+id/buttonSkip"
+        android:onClick="buttonSkip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SKIP"
+        app:layout_constraintTop_toBottomOf="@id/editFeel"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="30dp"
         />
 
 
