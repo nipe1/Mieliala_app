@@ -15,8 +15,8 @@ public class CalendarActivity extends AppCompatActivity {
         setContentView(R.layout.activity_calendar);
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         String editFeel = sharedPreferences.getString("editKey", "");
-        int seekFeel = sharedPreferences.getInt("seekKey", 0);
-        String testval = editFeel + " " + String.valueOf(seekFeel);
+        String seekFeel = sharedPreferences.getString("seekKey","");
+        String testval = editFeel + " " + seekFeel;
         TextView test = findViewById(R.id.textTest);
         test.setText(testval);
     }

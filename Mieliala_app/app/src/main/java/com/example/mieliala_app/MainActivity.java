@@ -8,12 +8,13 @@ import android.content.Intent;
 import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.SeekBar;
+import com.divyanshu.colorseekbar.ColorSeekBar;
 
 public class MainActivity extends AppCompatActivity {
 
     EditText editFeel;
-    SeekBar seekFeel;
+    ColorSeekBar seekFeel;
+    String hex;
     public static final String editKey = "editKey";
     public static final String seekKey = "seekKey";
     //väliaikainen intent id
@@ -25,7 +26,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         seekFeel = findViewById(R.id.seekFeeling);
         editFeel = findViewById(R.id.editFeel);
+
+        seekFeel.setOnColorChangeListener(new ColorSeekBar.OnColorChangeListener() {
+            @Override
+            public void onColorChangeListener(int color) {
+                hex = String.format("#%06X", (0xFFFFFF & color));
+            }
+        });
+
     }
+
 
     private void goToIntent()
     {
@@ -38,10 +48,9 @@ public class MainActivity extends AppCompatActivity {
     {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         String c = editFeel.getText().toString();
-        int n = seekFeel.getProgress();
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(editKey, c);
-        editor.putInt(seekKey, n);
+        editor.putString(seekKey, hex);
         editor.apply();
         goToIntent();
     }
