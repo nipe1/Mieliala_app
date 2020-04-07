@@ -16,8 +16,8 @@ public class DayActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_day);
 
-        TextView noteTextView = (TextView) findViewById(R.id.noteTextView);
-        TextView myMoodTextView = (TextView) findViewById(R.id.myMoodTextView);
+        TextView noteTextView = findViewById(R.id.noteTextView);
+        TextView myMoodTextView = findViewById(R.id.myMoodTextView);
 
         //päivän aikana annetut moodit/mielialat lisätään int listaan (esim. 1 = huono, 2 = menettelee, 3 = hyvä)
 
