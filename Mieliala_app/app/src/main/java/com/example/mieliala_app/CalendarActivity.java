@@ -35,7 +35,6 @@ public class CalendarActivity extends AppCompatActivity {
                                             int dayOfMonth) {
                 month = month + 1;//koska tammikuu = 0, helmikuu = 1 jne.
                 curDate = String.valueOf(dayOfMonth + "/" + month + "/" + year); //klikattavan päivän päivämäärä
-                test.setText(curDate);
                 goToIntent();
             }
         });
