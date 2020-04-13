@@ -2,6 +2,7 @@ package com.example.mieliala_app;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -25,10 +26,11 @@ public class DayActivity extends AppCompatActivity {
         setContentView(R.layout.activity_day);
 
         date = "dd/MM/yyyy"; //asetetaan arvoksi kalenterista valitun päivän päivämäärä
+        Intent myIntent = getIntent();
+        date = myIntent.getExtras().getString("choosedDay");
 
         TextView yearTextView = findViewById(R.id.dateTextView);
         yearTextView.setText(date);
-
         TextView noteTextView = findViewById(R.id.noteTextView);
 
 

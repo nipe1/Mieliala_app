@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.EditText;
 import com.divyanshu.colorseekbar.ColorSeekBar;
 
+import java.io.InputStream;
+
 public class MainActivity extends AppCompatActivity {
 
     EditText editFeel;
@@ -26,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         seekFeel = findViewById(R.id.seekFeeling);
         editFeel = findViewById(R.id.editFeel);
+
+
 
         seekFeel.setOnColorChangeListener(new ColorSeekBar.OnColorChangeListener() {
             @Override
