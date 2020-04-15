@@ -2,8 +2,11 @@ package com.example.mieliala_app;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.widget.TextView;
 
 import java.lang.reflect.Array;
@@ -12,11 +15,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.example.mieliala_app.MainActivity.dateKey;
+import static com.example.mieliala_app.MainActivity.editKey;
+
 public class DayActivity extends AppCompatActivity {
 
     int averageMood;
     String date; //dd/MM/yyyy
     String notes;
+    String dateEditKey;
+    //final public static String editKey = "editKey";
+    //final public static String seekKey = "seekKey";
+
+    SharedPreferences sharedPreferences;
 
     List<Integer> dayMoodList = new ArrayList<>();
 
@@ -29,9 +40,10 @@ public class DayActivity extends AppCompatActivity {
         Intent myIntent = getIntent();
         date = myIntent.getExtras().getString("choosedDay");
 
-        TextView yearTextView = findViewById(R.id.dateTextView);
-        yearTextView.setText(date);
+        TextView dateTextView = findViewById(R.id.dateTextView);
+        dateTextView.setText(date);
         TextView noteTextView = findViewById(R.id.noteTextView);
+
 
 
 
@@ -45,8 +57,8 @@ public class DayActivity extends AppCompatActivity {
             }
         }*/
 
-        getAverageMood();
-        setMood();
+        //getAverageMood();
+        //setMood();
 
         /*for (int i = 0; i < noteList.size(); i++)
         {
@@ -56,8 +68,23 @@ public class DayActivity extends AppCompatActivity {
             }
         }*/
 
-        noteTextView.setText(notes);
+        //SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
+        if (dateKey == date)
+        {
+            noteTextView.setText(getPref(editKey, getApplicationContext()));
+        }
+
+        //SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
+        //notes = sharedPreferences.getString(editKey, "");
+        //noteTextView.setText(notes);
+
+    }
+
+    public static String getPref(String key, Context context) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return preferences.getString(key, null);
     }
 
     public void getAverageMood()
