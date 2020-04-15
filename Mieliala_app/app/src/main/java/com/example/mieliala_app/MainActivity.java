@@ -14,6 +14,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import java.io.InputStream;
+
 public class MainActivity extends AppCompatActivity {
 
     EditText editFeel;

@@ -8,6 +8,7 @@
     android:background="@drawable/gradient">
 
     <CalendarView
+        android:id="@+id/calendarViewId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
@@ -16,10 +17,12 @@
         app:layout_constraintRight_toRightOf="parent"
         android:background="@drawable/rounded_corner"
         />
+
     <TextView
+        android:id="@+id/textTest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textTest"
         android:textSize="30sp"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
