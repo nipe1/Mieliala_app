@@ -11,7 +11,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/rounded_corner"
-        app:layout_constraintBottom_toBottomOf="@+id/buffer"
+        app:layout_constraintBottom_toBottomOf="@+id/seekFeeling"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -31,25 +31,19 @@
         android:layout_marginRight="20dp"
 
         />
-    <com.divyanshu.colorseekbar.ColorSeekBar
-        android:id="@+id/seekFeeling"
+    <SeekBar
         android:layout_width="match_parent"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:layout_marginTop="15dp"
-        app:colorSeeds="@array/custom_colors"
         android:layout_height="wrap_content"
+        android:splitTrack="false"
         app:layout_constraintTop_toBottomOf="@+id/textHeader"
-        app:barHeight="20dp"
-        app:cornerRadius="10dp"
-        app:thumbBorder="2dp"
-        app:thumbBorderColor="#393939"
-        />
-    <View
-        android:layout_width="0dp"
-        android:layout_height="20dp"
-        android:id="@+id/buffer"
-        app:layout_constraintTop_toBottomOf="@id/seekFeeling"
+        android:id="@+id/seekFeeling"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="30dp"
+        android:progress="60"
+        android:progressDrawable="@drawable/seekbar_style"
+        android:thumb="@drawable/custom_thumb"
+        android:paddingBottom="30dp"
         />
 
     <TextView
@@ -115,4 +109,4 @@
 
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>ntLayout>
