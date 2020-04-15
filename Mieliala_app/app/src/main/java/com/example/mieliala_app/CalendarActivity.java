@@ -15,6 +15,10 @@ public class CalendarActivity extends AppCompatActivity {
     String curDate;
     int ADD_NEW_PART_INTENT_ID = 2345;
 
+    String dayString;
+    String monthString;
+    String yearString;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,10 +38,30 @@ public class CalendarActivity extends AppCompatActivity {
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
 
             @Override
-            public void onSelectedDayChange(CalendarView view, int year, int month,
-                                            int dayOfMonth) {
+            public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
                 month = month + 1;//koska tammikuu = 0, helmikuu = 1 jne.
-                curDate = String.valueOf(dayOfMonth + "/" + month + "/" + year); //klikattavan päivän päivämäärä
+
+                //valittu päivämäärä verrattavaan muotoon muiden päivämäärien kanssa
+                if(dayOfMonth < 10) {
+                    dayString = Integer.toString(dayOfMonth);
+                    dayString = "0" + dayString;
+                }
+
+                if (dayOfMonth > 9) {
+                    dayString = Integer.toString(dayOfMonth);
+                }
+                if (month < 10) {
+                    monthString = Integer.toString(month);
+                    monthString = "0" + monthString;
+                }
+
+                if (month > 9) {
+                    monthString = Integer.toString(month);
+                }
+                yearString = Integer.toString(year);
+
+                //curDate = String.valueOf(dayOfMonth + "/" + month + "/" + year); //klikattavan päivän päivämäärä
+                curDate = dayString + "/" + monthString + "/" + yearString;
                 goToIntent();
             }
         });

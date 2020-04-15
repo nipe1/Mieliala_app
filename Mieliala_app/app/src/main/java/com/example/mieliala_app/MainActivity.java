@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         editFeel = findViewById(R.id.editFeel);
 
         Date todayDate = Calendar.getInstance().getTime();
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         todayString = formatter.format(todayDate);
     }
 

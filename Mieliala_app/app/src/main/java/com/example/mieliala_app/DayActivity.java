@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.lang.reflect.Array;
@@ -17,13 +18,15 @@ import java.util.Map;
 
 import static com.example.mieliala_app.MainActivity.dateKey;
 import static com.example.mieliala_app.MainActivity.editKey;
+import static com.example.mieliala_app.MainActivity.seekKey;
 
 public class DayActivity extends AppCompatActivity {
 
     int averageMood;
+    int moodInteger;
     String date; //dd/MM/yyyy
     String notes;
-    String dateEditKey;
+    String dateKeyToString;
     //final public static String editKey = "editKey";
     //final public static String seekKey = "seekKey";
 
@@ -44,8 +47,7 @@ public class DayActivity extends AppCompatActivity {
         dateTextView.setText(date);
         TextView noteTextView = findViewById(R.id.noteTextView);
 
-
-
+        setMood();
 
 
         //Haetaan kyseisen päivän mielialat ja lisätään ne listDayM
@@ -68,17 +70,13 @@ public class DayActivity extends AppCompatActivity {
             }
         }*/
 
-        //SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-
-        if (dateKey == date)
-        {
-            noteTextView.setText(getPref(editKey, getApplicationContext()));
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        dateKeyToString = sharedPreferences.getString(dateKey, "");
+        //dateTextView.setText("i"+date + " " + dateKeyToString+"i");
+        if(date.equals(dateKeyToString)) {
+            notes = sharedPreferences.getString(editKey, "");
+            noteTextView.setText(notes);
         }
-
-        //SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-
-        //notes = sharedPreferences.getString(editKey, "");
-        //noteTextView.setText(notes);
 
     }
 
@@ -99,27 +97,35 @@ public class DayActivity extends AppCompatActivity {
         averageMood = 3; //väliaikainen arvo
     }
 
-    public void setMood()
-    {
+    public void setMood() {
         //päivän aikana annetut moodit/mielialat lisätään int listaan (esim. 1 = huono, 2 = menettelee, 3 = hyvä)
-        TextView myMoodTextView = findViewById(R.id.myMoodTextView);
-
-        if(averageMood == 1)
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        dateKeyToString = sharedPreferences.getString(dateKey, "");
+        
+        if(date.equals(dateKeyToString))
         {
-            //asetetaan dayMoodImageViewille surunaama
-            myMoodTextView.setText("Bad");
-        }
+            moodInteger = sharedPreferences.getInt(seekKey, 0b1);
 
-        if(averageMood == 2)
-        {
-            //asetetaan dayMoodImageViewille neutraali naama
-            myMoodTextView.setText("Neutral");
-        }
+            TextView myMoodTextView = findViewById(R.id.myMoodTextView);
+            ImageView moodImageView = findViewById(R.id.dayMoodImageView);
 
-        if(averageMood == 3)
-        {
-            //asetetaan dayMoodImageViewille hymynaama
-            myMoodTextView.setText("Good");
+            if (moodInteger < 20) {
+                //asetetaan dayMoodImageViewille surunaama
+                myMoodTextView.setText("Very Bad");
+                moodImageView.setImageResource(R.drawable.face1);
+            } else if (moodInteger >= 20 && moodInteger < 40) {
+                myMoodTextView.setText("Bad");
+                moodImageView.setImageResource(R.drawable.face2);
+            } else if (moodInteger >= 40 && moodInteger < 60) {
+                myMoodTextView.setText("Neutral");
+                moodImageView.setImageResource(R.drawable.face3);
+            } else if (moodInteger >= 60 && moodInteger < 80) {
+                myMoodTextView.setText("Good");
+                moodImageView.setImageResource(R.drawable.face4);
+            } else if (moodInteger >= 80) {
+                myMoodTextView.setText("Excellent");
+                moodImageView.setImageResource(R.drawable.face5);
+            }
         }
     }
 
