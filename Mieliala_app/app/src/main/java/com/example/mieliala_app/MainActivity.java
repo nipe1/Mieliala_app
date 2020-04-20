@@ -21,8 +21,6 @@ import java.util.Date;
 
 import java.io.InputStream;
 
-import com.example.bargraph2.R;
-
 public class MainActivity extends AppCompatActivity {
 
     EditText editFeel;
