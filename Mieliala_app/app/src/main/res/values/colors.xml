@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-<<<<<<< HEAD
     <color name="colorPrimary">#F15F79</color>
     <color name="colorPrimaryDark">#732D3A</color>
     <color name="colorAccent">#A63046</color>
-=======
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
->>>>>>> parent of 6c9aaf9... added diagram functionality
 </resources>
