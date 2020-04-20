@@ -12,7 +12,7 @@ import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class BarGraph extends AppCompatActivity {
+public class Chart extends AppCompatActivity {
     int[] colorClassArray = new int []{Color.RED, Color.GREEN, Color.YELLOW};
     PieChart pieChart ;
     ArrayList<Entry> entries ;
