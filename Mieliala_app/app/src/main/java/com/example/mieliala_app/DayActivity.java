@@ -11,7 +11,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.bargraph2.R;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
