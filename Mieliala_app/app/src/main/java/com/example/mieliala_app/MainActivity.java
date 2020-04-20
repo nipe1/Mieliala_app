@@ -7,10 +7,15 @@ import android.os.Bundle;
 import android.content.Intent;
 import android.preference.PreferenceManager;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.SeekBar;
 
+import com.google.gson.Gson;
+
+import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -29,6 +34,13 @@ public class MainActivity extends AppCompatActivity {
     //väliaikainen intent id
     int ADD_NEW_PART_INTENT_ID = 1234;
 
+    ArrayList<String> noteList;
+    ArrayList<Integer> seekList;
+    ArrayList<String> dateList;
+    ArrayList<String> colorList;
+    private ArrayAdapter adapter;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,9 +48,15 @@ public class MainActivity extends AppCompatActivity {
         seekFeel = findViewById(R.id.seekFeeling);
         editFeel = findViewById(R.id.editFeel);
 
+
         Date todayDate = Calendar.getInstance().getTime();
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         todayString = formatter.format(todayDate);
+
+        noteList = new ArrayList<>();
+        seekList = new ArrayList<>();
+        dateList = new ArrayList<>();
+        colorList = new ArrayList<>();
     }
 
 
@@ -49,18 +67,28 @@ public class MainActivity extends AppCompatActivity {
         startActivityForResult(calendarActivityIntent, ADD_NEW_PART_INTENT_ID);
     }
 
-    public void buttonNext(View v)
-    {
+    public void buttonNext(View v) throws IOException {
         colorPicker();
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         String c = editFeel.getText().toString();
         int n = seekFeel.getProgress();
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(editKey, c);
-        editor.putInt(seekKey, n);
-        editor.putString(dateKey, todayString);
-        editor.putString(colorKey, colorFeel);
-        editor.apply();
+        //editor.putString(editKey, c);
+        //editor.putInt(seekKey, n);
+        //editor.putString(dateKey, todayString);
+        //editor.putString(colorKey, colorFeel);
+
+        noteList.add(c);
+        sharedPreferences.edit().putString(editKey,ObjectSerializer.serialize(noteList)).apply();
+        //seekList.add(n);
+        //sharedPreferences.edit().putInt(seekKey,ObjectSerializer.serializeInt(seekList)).apply();
+        dateList.add(todayString);
+        sharedPreferences.edit().putString(dateKey, ObjectSerializer.serialize(dateList)).apply();
+        colorList.add(colorFeel);
+        sharedPreferences.edit().putString(colorKey, ObjectSerializer.serialize(colorList)).apply();
+
+
+        //editor.apply();
         goToIntent();
     }
 

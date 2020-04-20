@@ -9,8 +9,14 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.IOException;
 import java.lang.reflect.Array;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -27,8 +33,10 @@ public class DayActivity extends AppCompatActivity {
     String date; //dd/MM/yyyy
     String notes;
     String dateKeyToString;
+    //String editKey = MainActivity.editKey;
     //final public static String editKey = "editKey";
     //final public static String seekKey = "seekKey";
+    ArrayList<String> storedNoteList;
 
     SharedPreferences sharedPreferences;
 
@@ -47,28 +55,21 @@ public class DayActivity extends AppCompatActivity {
         dateTextView.setText(date);
         TextView noteTextView = findViewById(R.id.noteTextView);
 
-        setMood();
+        storedNoteList = new ArrayList<>();
 
-
-        //Haetaan kyseisen päivän mielialat ja lisätään ne listDayM
-        /*for (int i = 0; i < moodList.size(); i++)
-        {
-            if(date == moodList(i).date)
-            {
-                dayMoodList.add(moodList(i).mood);
-            }
+        /*try { // OHJELMA KAATUU TÄMÄN KOHDALLA
+            storedNoteList = (ArrayList<String>) ObjectSerializer.deserialize(sharedPreferences.getString(editKey,ObjectSerializer.serialize(new ArrayList<String>())));
+        } catch (IOException e) {
+            e.printStackTrace();
         }*/
+
+        //noteTextView.setText(storedNoteList.get(0));
+
+        //setMood();
+
 
         //getAverageMood();
         //setMood();
-
-        /*for (int i = 0; i < noteList.size(); i++)
-        {
-            if(date == noteList(i).date)
-            {
-                notes = notes + "\n\n" + noteList(i).note;
-            }
-        }*/
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         dateKeyToString = sharedPreferences.getString(dateKey, "");
@@ -78,7 +79,10 @@ public class DayActivity extends AppCompatActivity {
             noteTextView.setText(notes);
         }
 
+
+
     }
+
 
     public static String getPref(String key, Context context) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
@@ -101,7 +105,7 @@ public class DayActivity extends AppCompatActivity {
         //päivän aikana annetut moodit/mielialat lisätään int listaan (esim. 1 = huono, 2 = menettelee, 3 = hyvä)
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         dateKeyToString = sharedPreferences.getString(dateKey, "");
-        
+
         if(date.equals(dateKeyToString))
         {
             moodInteger = sharedPreferences.getInt(seekKey, 0b1);
