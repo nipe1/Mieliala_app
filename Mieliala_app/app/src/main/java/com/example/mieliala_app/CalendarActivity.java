@@ -9,6 +9,8 @@ import android.preference.PreferenceManager;
 import android.widget.CalendarView;
 import android.widget.TextView;
 
+import com.example.bargraph2.R;
+
 public class CalendarActivity extends AppCompatActivity {
 
     CalendarView calendarView;
