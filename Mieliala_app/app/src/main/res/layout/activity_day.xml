@@ -54,7 +54,7 @@
                 android:id="@+id/dayMoodImageView"
                 android:layout_width="77dp"
                 android:layout_height="72dp"
-                app:srcCompat="@android:drawable/presence_busy" />
+                app:srcCompat="@android:drawable/presence_busy"/>
 
             <TextView
                 android:id="@+id/myMoodTextView"
