@@ -1,6 +1,5 @@
 package com.example.bargraph2;
 import java.util.ArrayList;
-
 import android.graphics.Color;
 import android.os.Bundle;
 import com.github.mikephil.charting.charts.PieChart;
@@ -11,7 +10,7 @@ import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class BarGraph extends AppCompatActivity {
     int[] colorClassArray = new int []{Color.RED, Color.GREEN, Color.YELLOW};
     PieChart pieChart ;
     ArrayList<Entry> entries ;
@@ -22,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.bargraph);
 
         pieChart = (PieChart) findViewById(R.id.chart1);
 
