@@ -22,7 +22,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + TABLE_NAME +" (ID INTEGER PRIMARY KEY AUTOINCREMENT,DATE TEXT,NOTE TEXT,COLOR INTEGER, PROGRESS INTEGER)");
+        db.execSQL("create table " + TABLE_NAME +" (ID INTEGER PRIMARY KEY AUTOINCREMENT,DATE TEXT,NOTE TEXT,COLOR TEXT, PROGRESS TEXT)");
     }
 
     @Override
@@ -31,7 +31,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertData(String date,String note,int color, int progress ) {
+    public boolean insertData(String date,String note,String color, String progress ) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL_2,date);
@@ -51,9 +51,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return res;
     }
 
-    public Cursor getData(String date) {
+    public Cursor getData() {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor res = db.rawQuery("select * from"+TABLE_NAME+"WHERE DATE ="+date, null);
+        Cursor res = db.rawQuery("select * from "+TABLE_NAME+" where ID = (select max(ID) FROM "+TABLE_NAME+")", null);
+        return res;
     }
 
     public boolean updateData(String id,String date,String note,int color, int progress) {

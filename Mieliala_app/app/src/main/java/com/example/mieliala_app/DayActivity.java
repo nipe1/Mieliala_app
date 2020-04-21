@@ -10,7 +10,7 @@ import android.preference.PreferenceManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import android.database.Cursor;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -22,21 +22,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.example.mieliala_app.MainActivity.dateKey;
-import static com.example.mieliala_app.MainActivity.editKey;
-import static com.example.mieliala_app.MainActivity.seekKey;
-
 public class DayActivity extends AppCompatActivity {
+    DatabaseHelper myDb;
+    String id;
+    String date;
 
+
+    String color;
     int averageMood;
     int moodInteger;
-    String date; //dd/MM/yyyy
+    String dateVal; //dd/MM/yyyy
     String notes;
     String dateKeyToString;
-    //String editKey = MainActivity.editKey;
-    //final public static String editKey = "editKey";
-    //final public static String seekKey = "seekKey";
-    ArrayList<String> storedNoteList;
 
     SharedPreferences sharedPreferences;
 
@@ -46,16 +43,16 @@ public class DayActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_day);
-
-        date = "dd/MM/yyyy"; //asetetaan arvoksi kalenterista valitun päivän päivämäärä
+        myDb = new DatabaseHelper(this);
+        dateVal = "dd/MM/yyyy"; //asetetaan arvoksi kalenterista valitun päivän päivämäärä
         Intent myIntent = getIntent();
-        date = myIntent.getExtras().getString("choosedDay");
+        dateVal = myIntent.getExtras().getString("choosedDay");
 
         TextView dateTextView = findViewById(R.id.dateTextView);
         dateTextView.setText(date);
         TextView noteTextView = findViewById(R.id.noteTextView);
 
-        storedNoteList = new ArrayList<>();
+        //storedNoteList = new ArrayList<>();
 
         /*try { // OHJELMA KAATUU TÄMÄN KOHDALLA
             storedNoteList = (ArrayList<String>) ObjectSerializer.deserialize(sharedPreferences.getString(editKey,ObjectSerializer.serialize(new ArrayList<String>())));
@@ -69,18 +66,43 @@ public class DayActivity extends AppCompatActivity {
 
 
         //getAverageMood();
-        //setMood();
 
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        dateKeyToString = sharedPreferences.getString(dateKey, "");
-        //dateTextView.setText("i"+date + " " + dateKeyToString+"i");
-        if(date.equals(dateKeyToString)) {
-            notes = sharedPreferences.getString(editKey, "");
-            noteTextView.setText(notes);
+
+
+
+
+
+
+
+        Cursor res = myDb.getData();
+        if(res.getCount() == 0) {
+            // nothing
+            return;
         }
 
+        ArrayList<String> buffer = new ArrayList<String>();
+        while (res.moveToNext()) {
+            buffer.add(res.getString(0));
+            buffer.add(res.getString(1));
+            buffer.add(res.getString(2));
+            buffer.add(res.getString(3));
+            buffer.add(res.getString(4));
+        }
+        id = buffer.get(0);
+        date = buffer.get(1);
+        notes = buffer.get(2);
+        color = buffer.get(3);
+        moodInteger = Integer.parseInt(buffer.get(4));
 
-
+        //SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        //dateKeyToString = sharedPreferences.getString(dateKey, "");
+        //dateTextView.setText("i"+date + " " + dateKeyToString+"i");
+        //if(date.equals(dateTextView)) {
+        //    notes = sharedPreferences.getString(editKey, "");
+        //    noteTextView.setText(notes);
+        //}
+        noteTextView.setText(id+" "+date+" "+notes+" "+color+" "+String.valueOf(moodInteger));
+        setMood();
     }
 
 
@@ -103,13 +125,9 @@ public class DayActivity extends AppCompatActivity {
 
     public void setMood() {
         //päivän aikana annetut moodit/mielialat lisätään int listaan (esim. 1 = huono, 2 = menettelee, 3 = hyvä)
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        dateKeyToString = sharedPreferences.getString(dateKey, "");
 
-        if(date.equals(dateKeyToString))
+        if(dateVal.equals(date))
         {
-            moodInteger = sharedPreferences.getInt(seekKey, 0b1);
-
             TextView myMoodTextView = findViewById(R.id.myMoodTextView);
             ImageView moodImageView = findViewById(R.id.dayMoodImageView);
 
