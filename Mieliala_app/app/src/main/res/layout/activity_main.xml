@@ -23,8 +23,19 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/rounded_corner"
-        app:layout_constraintBottom_toBottomOf="@+id/buttonNext"
+        app:layout_constraintBottom_toBottomOf="@+id/buffer"
         app:layout_constraintTop_toTopOf="@id/textHeader2"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+
+        />
+    <View
+        android:layout_width="0dp"
+        android:layout_height="5dp"
+        android:id="@+id/buffer"
+        app:layout_constraintTop_toBottomOf="@+id/buttonNext"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginLeft="20dp"
