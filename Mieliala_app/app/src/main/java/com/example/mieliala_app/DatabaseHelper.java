@@ -51,9 +51,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return res;
     }
 
-    public Cursor getData() {
+    public Cursor getData(String date) {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor res = db.rawQuery("select * from "+TABLE_NAME+" where ID = (select max(ID) FROM "+TABLE_NAME+")", null);
+        Cursor res = db.rawQuery("select * from "+TABLE_NAME+" where DATE='"+date+"' ORDER BY ID DESC", null);
         return res;
     }
 
@@ -68,8 +68,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return true;
     }
 
-    public Integer deleteData (String id) {
+    public void deleteData () {
         SQLiteDatabase db = this.getWritableDatabase();
-        return db.delete(TABLE_NAME, "ID = ?",new String[] {id});
+        db.delete(TABLE_NAME, null, null);
     }
 }

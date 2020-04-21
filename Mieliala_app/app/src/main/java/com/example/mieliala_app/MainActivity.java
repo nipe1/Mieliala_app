@@ -72,6 +72,11 @@ public class MainActivity extends AppCompatActivity {
         goToIntent();
     }
 
+    public void cleadDB(View v)
+    {
+        myDb.deleteData();
+    }
+
 
     public void colorPicker()
     {
