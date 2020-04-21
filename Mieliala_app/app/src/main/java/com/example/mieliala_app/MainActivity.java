@@ -3,6 +3,7 @@ package com.example.mieliala_app;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.content.Intent;
 import android.preference.PreferenceManager;
@@ -25,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     EditText editFeel;
     SeekBar seekFeel;
     String todayString;
-    String colorFeel;
+    int colorFeel;
     public static final String editKey = "editKey";
     public static final String seekKey = "seekKey";
     public static final String dateKey = "dateKey";
@@ -33,11 +34,11 @@ public class MainActivity extends AppCompatActivity {
     //väliaikainen intent id
     int ADD_NEW_PART_INTENT_ID = 1234;
 
-    ArrayList<String> noteList;
-    ArrayList<Integer> seekList;
-    ArrayList<String> dateList;
-    ArrayList<String> colorList;
-    private ArrayAdapter adapter;
+    //ArrayList<String> noteList;
+    //ArrayList<Integer> seekList;
+    //ArrayList<String> dateList;
+    //ArrayList<String> colorList;
+    //private ArrayAdapter adapter;
 
 
     @Override
@@ -50,12 +51,13 @@ public class MainActivity extends AppCompatActivity {
 
         Date todayDate = Calendar.getInstance().getTime();
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+
         todayString = formatter.format(todayDate);
 
-        noteList = new ArrayList<>();
-        seekList = new ArrayList<>();
-        dateList = new ArrayList<>();
-        colorList = new ArrayList<>();
+        //noteList = new ArrayList<>();
+        //seekList = new ArrayList<>();
+        //dateList = new ArrayList<>();
+        //colorList = new ArrayList<>();
     }
 
 
@@ -72,22 +74,22 @@ public class MainActivity extends AppCompatActivity {
         String c = editFeel.getText().toString();
         int n = seekFeel.getProgress();
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        //editor.putString(editKey, c);
-        //editor.putInt(seekKey, n);
-        //editor.putString(dateKey, todayString);
-        //editor.putString(colorKey, colorFeel);
+        editor.putString(editKey, c);
+        editor.putInt(seekKey, n);
+        editor.putString(dateKey, todayString);
+        editor.putInt(colorKey, colorFeel);
 
-        noteList.add(c);
-        sharedPreferences.edit().putString(editKey,ObjectSerializer.serialize(noteList)).apply();
+        //noteList.add(c);
+        //sharedPreferences.edit().putString(editKey,ObjectSerializer.serialize(noteList)).apply();
         //seekList.add(n);
         //sharedPreferences.edit().putInt(seekKey,ObjectSerializer.serializeInt(seekList)).apply();
-        dateList.add(todayString);
-        sharedPreferences.edit().putString(dateKey, ObjectSerializer.serialize(dateList)).apply();
-        colorList.add(colorFeel);
-        sharedPreferences.edit().putString(colorKey, ObjectSerializer.serialize(colorList)).apply();
+        //dateList.add(todayString);
+        //sharedPreferences.edit().putString(dateKey, ObjectSerializer.serialize(dateList)).apply();
+        //colorList.add(colorFeel);
+        //sharedPreferences.edit().putString(colorKey, ObjectSerializer.serialize(colorList)).apply();
 
 
-        //editor.apply();
+        editor.apply();
         goToIntent();
     }
 
@@ -103,23 +105,23 @@ public class MainActivity extends AppCompatActivity {
 
         if (progress < 20)
         {
-            colorFeel = "#534666";
+            colorFeel = Color.parseColor("#534666");
         }
         else if (progress >= 20 && progress < 40)
         {
-            colorFeel = "#A4666E";
+            colorFeel = Color.parseColor("#A4666E");
         }
         else if (progress >= 40 && progress < 60)
         {
-            colorFeel = "#CD7672";
+            colorFeel = Color.parseColor("#CD7672");
         }
         else if (progress >= 60 && progress < 80)
         {
-            colorFeel = "#D88B6E";
+            colorFeel = Color.parseColor("#D88B6E");
         }
         else if (progress >= 80)
         {
-            colorFeel = "#EEB462";
+            colorFeel = Color.parseColor("#EEB462");
         }
     }
 }

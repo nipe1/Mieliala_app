@@ -68,8 +68,8 @@ public class DayActivity extends AppCompatActivity {
         //setMood();
 
 
-        //getAverageMood();
-        //setMood();
+        getAverageMood();
+        setMood();
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         dateKeyToString = sharedPreferences.getString(dateKey, "");
