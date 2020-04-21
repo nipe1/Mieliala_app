@@ -11,6 +11,8 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import com.google.gson.Gson;
+import android.database.Cursor;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -21,7 +23,7 @@ import java.util.Date;
 import java.io.InputStream;
 
 public class MainActivity extends AppCompatActivity {
-
+    DatabaseHelper myDb;
     EditText editFeel;
     SeekBar seekFeel;
     String todayString;
@@ -88,6 +90,18 @@ public class MainActivity extends AppCompatActivity {
 
 
         //editor.apply();
+
+
+        boolean isInserted = myDb.insertData(todayString, editFeel, colorFeel, seekFeel);
+        if(isInserted == true)
+            Toast.makeText(MainActivity.this,"Data Inserted",Toast.LENGTH_LONG).show();
+        else
+            Toast.makeText(MainActivity.this,"Data not Inserted",Toast.LENGTH_LONG).show();
+
+
+
+
+
         goToIntent();
     }
 
@@ -122,4 +136,6 @@ public class MainActivity extends AppCompatActivity {
             colorFeel = "#EEB462";
         }
     }
+
+
 }
