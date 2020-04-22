@@ -6,8 +6,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.View;
 import android.widget.CalendarView;
 import android.widget.TextView;
+
 
 public class CalendarActivity extends AppCompatActivity {
 
@@ -23,15 +25,16 @@ public class CalendarActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        String editFeel = sharedPreferences.getString("editKey", "");
-        int seekFeel = sharedPreferences.getInt("seekKey", 0);
-        String dateFeel = sharedPreferences.getString("dateKey", "");
-        String colorFeel = sharedPreferences.getString("colorKey", "");
-        String testval = editFeel + " " + String.valueOf(seekFeel) + " " + dateFeel+ " " + colorFeel;
-        TextView test = findViewById(R.id.textTest);
 
-        test.setText(testval);
+        //SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        //String editFeel = sharedPreferences.getString("editKey", "");
+        //int seekFeel = sharedPreferences.getInt("seekKey", 0);
+        //String dateFeel = sharedPreferences.getString("dateKey", "");
+        //String colorFeel = sharedPreferences.getString("colorKey", "");
+        //String testval = editFeel + " " + String.valueOf(seekFeel) + " " + dateFeel+ " " + colorFeel;
+        //TextView test = findViewById(R.id.textTest);
+
+        //test.setText(testval);
 
         calendarView = findViewById(R.id.calendarViewId);
 
@@ -77,4 +80,23 @@ public class CalendarActivity extends AppCompatActivity {
 
     }
 
+    public void onClickDiagram(View view) {
+        Intent intent = new Intent(this, Chart.class);
+        startActivity(intent);
+    }
 }
+/*
+        String testval = editFeel + " " + String.valueOf(seekFeel) + " " + dateFeel+ " " + colorFeel;
+
+
+        test.setText(testval);
+        TextView test = findViewById(R.id.textTest);
+
+   <TextView
+        android:id="@+id/textTest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+*/

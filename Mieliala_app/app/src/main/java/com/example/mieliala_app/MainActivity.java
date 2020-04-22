@@ -3,6 +3,7 @@ package com.example.mieliala_app;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.content.Intent;
 import android.preference.PreferenceManager;
@@ -10,35 +11,24 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.SeekBar;
-
 import com.google.gson.Gson;
+import android.database.Cursor;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-import java.io.InputStream;
 
 public class MainActivity extends AppCompatActivity {
-
+    DatabaseHelper myDb;
     EditText editFeel;
     SeekBar seekFeel;
     String todayString;
     String colorFeel;
-    public static final String editKey = "editKey";
-    public static final String seekKey = "seekKey";
-    public static final String dateKey = "dateKey";
-    public static final String colorKey = "colorKey";
     //väliaikainen intent id
     int ADD_NEW_PART_INTENT_ID = 1234;
-
-    ArrayList<String> noteList;
-    ArrayList<Integer> seekList;
-    ArrayList<String> dateList;
-    ArrayList<String> colorList;
-    private ArrayAdapter adapter;
 
 
     @Override
@@ -47,16 +37,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         seekFeel = findViewById(R.id.seekFeeling);
         editFeel = findViewById(R.id.editFeel);
-
+        myDb = new DatabaseHelper(this);
 
         Date todayDate = Calendar.getInstance().getTime();
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         todayString = formatter.format(todayDate);
-
-        noteList = new ArrayList<>();
-        seekList = new ArrayList<>();
-        dateList = new ArrayList<>();
-        colorList = new ArrayList<>();
     }
 
 
@@ -69,8 +54,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void buttonNext(View v) throws IOException {
         colorPicker();
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         String c = editFeel.getText().toString();
+<<<<<<< HEAD
         int n = seekFeel.getProgress();
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(editKey, c);
@@ -89,12 +74,28 @@ public class MainActivity extends AppCompatActivity {
 */
 
         editor.apply();
+=======
+        String n = String.valueOf(seekFeel.getProgress());
+
+        boolean isInserted = myDb.insertData(todayString, c, colorFeel, n);
+        if(isInserted == true) {
+            Toast.makeText(MainActivity.this, "Data Inserted", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(MainActivity.this,"Data not Inserted",Toast.LENGTH_LONG).show();
+        }
+
+>>>>>>> master
         goToIntent();
     }
 
     public void buttonSkip(View v)
     {
         goToIntent();
+    }
+
+    public void cleadDB(View v)
+    {
+        myDb.deleteData();
     }
 
 
@@ -123,4 +124,6 @@ public class MainActivity extends AppCompatActivity {
             colorFeel = "#EEB462";
         }
     }
+
+
 }
