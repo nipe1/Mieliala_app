@@ -24,15 +24,15 @@ public class CalendarActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        String editFeel = sharedPreferences.getString("editKey", "");
-        int seekFeel = sharedPreferences.getInt("seekKey", 0);
-        String dateFeel = sharedPreferences.getString("dateKey", "");
-        String colorFeel = sharedPreferences.getString("colorKey", "");
-        String testval = editFeel + " " + String.valueOf(seekFeel) + " " + dateFeel+ " " + colorFeel;
-        TextView test = findViewById(R.id.textTest);
+        //SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        //String editFeel = sharedPreferences.getString("editKey", "");
+        //int seekFeel = sharedPreferences.getInt("seekKey", 0);
+        //String dateFeel = sharedPreferences.getString("dateKey", "");
+        //String colorFeel = sharedPreferences.getString("colorKey", "");
+        //String testval = editFeel + " " + String.valueOf(seekFeel) + " " + dateFeel+ " " + colorFeel;
+        //TextView test = findViewById(R.id.textTest);
 
-        test.setText(testval);
+        //test.setText(testval);
 
         calendarView = findViewById(R.id.calendarViewId);
 
