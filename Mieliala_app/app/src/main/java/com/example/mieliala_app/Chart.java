@@ -1,8 +1,7 @@
-package com.example.bargraph2;
+package com.example.mieliala_app;
 import java.util.ArrayList;
 import android.graphics.Color;
 import android.os.Bundle;
-
 import com.example.mieliala_app.R;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.BarEntry;
