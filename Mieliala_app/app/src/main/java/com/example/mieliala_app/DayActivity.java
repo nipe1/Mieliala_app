@@ -78,6 +78,7 @@ public class DayActivity extends AppCompatActivity {
             notes = sharedPreferences.getString(editKey, "");
             noteTextView.setText(notes);
         }
+        setMood();
 
 
 

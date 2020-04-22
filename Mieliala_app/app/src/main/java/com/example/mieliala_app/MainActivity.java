@@ -73,12 +73,12 @@ public class MainActivity extends AppCompatActivity {
         String c = editFeel.getText().toString();
         int n = seekFeel.getProgress();
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        //editor.putString(editKey, c);
-        //editor.putInt(seekKey, n);
-        //editor.putString(dateKey, todayString);
-        //editor.putString(colorKey, colorFeel);
+        editor.putString(editKey, c);
+        editor.putInt(seekKey, n);
+        editor.putString(dateKey, todayString);
+        editor.putString(colorKey, colorFeel);
 
-        noteList.add(c);
+        /*noteList.add(c);
         sharedPreferences.edit().putString(editKey,ObjectSerializer.serialize(noteList)).apply();
         //seekList.add(n);
         //sharedPreferences.edit().putInt(seekKey,ObjectSerializer.serializeInt(seekList)).apply();
@@ -86,9 +86,9 @@ public class MainActivity extends AppCompatActivity {
         sharedPreferences.edit().putString(dateKey, ObjectSerializer.serialize(dateList)).apply();
         colorList.add(colorFeel);
         sharedPreferences.edit().putString(colorKey, ObjectSerializer.serialize(colorList)).apply();
+*/
 
-
-        //editor.apply();
+        editor.apply();
         goToIntent();
     }
 
