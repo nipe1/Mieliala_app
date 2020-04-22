@@ -55,26 +55,6 @@ public class MainActivity extends AppCompatActivity {
     public void buttonNext(View v) throws IOException {
         colorPicker();
         String c = editFeel.getText().toString();
-<<<<<<< HEAD
-        int n = seekFeel.getProgress();
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(editKey, c);
-        editor.putInt(seekKey, n);
-        editor.putString(dateKey, todayString);
-        editor.putString(colorKey, colorFeel);
-
-        /*noteList.add(c);
-        sharedPreferences.edit().putString(editKey,ObjectSerializer.serialize(noteList)).apply();
-        //seekList.add(n);
-        //sharedPreferences.edit().putInt(seekKey,ObjectSerializer.serializeInt(seekList)).apply();
-        dateList.add(todayString);
-        sharedPreferences.edit().putString(dateKey, ObjectSerializer.serialize(dateList)).apply();
-        colorList.add(colorFeel);
-        sharedPreferences.edit().putString(colorKey, ObjectSerializer.serialize(colorList)).apply();
-*/
-
-        editor.apply();
-=======
         String n = String.valueOf(seekFeel.getProgress());
 
         boolean isInserted = myDb.insertData(todayString, c, colorFeel, n);
@@ -84,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(MainActivity.this,"Data not Inserted",Toast.LENGTH_LONG).show();
         }
 
->>>>>>> master
         goToIntent();
     }
 
