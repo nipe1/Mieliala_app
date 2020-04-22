@@ -18,11 +18,17 @@
         android:background="@drawable/rounded_corner"
         />
 
-    <TextView
-        android:id="@+id/textTest"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="30sp"
+    <ImageView
+        android:id="@+id/DiagramButton"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:onClick="onClickDiagram"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.953"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023"
+        app:srcCompat="@drawable/icondiagrammi" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
