@@ -42,6 +42,11 @@ public class MainActivity extends AppCompatActivity {
         Date todayDate = Calendar.getInstance().getTime();
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         todayString = formatter.format(todayDate);
+
+        myDb.insertData("23/04/2020", "Feeling good", "#EEB462", "78");
+        myDb.insertData("22/04/2020", "Not feeling too good", "#A4666E", "32");
+        myDb.insertData("21/04/2020", "Feeling excellent!", "#EEB462", "95");
+        myDb.insertData("20/04/2020", "Feeling sad.", "#534666", "12");
     }
 
 
